@@ -24,11 +24,17 @@ public class Lesson03Quiz01RestController {
 		return realestateBO.getRealEstateById(id);
 	}
 	@RequestMapping("/lesson03/quiz01/2")
-	public RealEstate quiz01_2(
+	public List<RealEstate> quiz01_2(
 			@RequestParam("rent_price") int rentPrice
 			) {
 		
 		return realestateBO.getRealEstateByRentPrice(rentPrice);
 	}
-	
+	@RequestMapping("/lesson03/quiz01/3")
+	public List<RealEstate> quiz01_3(
+			@RequestParam("area") int area,
+			@RequestParam(value = "price", required = true) int price) {
+		
+		return realestateBO.getRealEstateListByAreaPrice(area, price);
+	}
 }
