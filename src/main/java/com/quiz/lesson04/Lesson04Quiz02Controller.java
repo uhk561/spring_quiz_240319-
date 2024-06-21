@@ -18,29 +18,31 @@ public class Lesson04Quiz02Controller {
 	@Autowired
 	private RealtorBO realtorBO;
 
-	// lesson04/quiz02/add-realtor-view
+	// 공인중개사 추가
+	// http://localhost:8080/lesson04/quiz02/add-realtor-view
 	@GetMapping("/add-realtor-view")
 	public String addRealtorView() {
 		return "lesson04/addRealtor";
-		
-		}
-		@PostMapping("/add-Realtor")
-		public String addRealtor(
-				@ModelAttribute Realtor realtor,
-				Model model) {
-			
-			// DB insert
-			realtorBO.addRealtor(realtor);
-			
-			// DB select => 
-			int id = realtor.getId();
-			Realtor newRealtor = realtorBO.getRealtorById(id);
-			
-			// Model에 담는다. 
-			model.addAttribute("realtor", newRealtor);
-			
-			// 화면 이동
-			return "lesson04/afterAddRealtor";
-		}
 	}
+	
+	// db insert => 방금 추가된 항목 화면
+	// http://localhost:8080/lesson04/quiz02/add-realtor
+	@PostMapping("/add-realtor")
+	public String addRealtor(
+			@ModelAttribute Realtor realtor,
+			Model model) {
+		
+		// DB insert => 방금 추가된 pk(id) 받아옴 => realtor에 세팅됨
+		realtorBO.addRealtor(realtor);
+		
+		// realtor에 세팅된 id로 DB 다시 조회
+		Realtor latestRealtor = realtorBO.getRealtorById(realtor.getId());
+		
+		// Model에 담기
+		model.addAttribute("realtor", latestRealtor);
+		
+		// 화면 이동
+		return "lesson04/afterAddRealtor";
+	}
+}
 

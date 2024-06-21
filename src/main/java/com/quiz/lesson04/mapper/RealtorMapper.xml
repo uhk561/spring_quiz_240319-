@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.quiz.lesson04.mapper.RealtorMapper">
-	<insert id="insertRealtor" parameterType="com.quiz.lesson04.domain.Realtor"
+	<insert id="insertRealtor" parameterType="com.quiz.lesson04.domain.Realtor" 
 	useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO `realtor`
 		(
@@ -40,3 +40,4 @@
 			`id` = #{id}
 	</select>
 </mapper>
+

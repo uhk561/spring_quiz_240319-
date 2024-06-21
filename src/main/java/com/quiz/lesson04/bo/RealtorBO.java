@@ -8,19 +8,19 @@ import com.quiz.lesson04.mapper.RealtorMapper;
 
 @Service
 public class RealtorBO {
-	
+
 	@Autowired
 	private RealtorMapper realtorMapper;
 	
+	// input: Realtor
+	// output: X
 	public void addRealtor(Realtor realtor) {
 		realtorMapper.insertRealtor(realtor);
 	}
 	
-	//  input:id
-	// output: Realtor
+	// input: id
+	// output: Realtor(단건) or null
 	public Realtor getRealtorById(int id) {
 		return realtorMapper.selectRealtorById(id);
 	}
-	
 }
-

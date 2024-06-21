@@ -10,6 +10,4 @@ public interface RealtorMapper {
 	public void insertRealtor(Realtor realtor);
 	
 	public Realtor selectRealtorById(int id);
-
- 	}
-
+}
