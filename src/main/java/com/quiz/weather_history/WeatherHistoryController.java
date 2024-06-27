@@ -3,7 +3,6 @@ package com.quiz.weather_history;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,11 +53,11 @@ public class WeatherHistoryController {
 			@RequestParam("windSpeed") double windSpeed,
 			HttpServletResponse response) {
 		
-		// db insert
-		weatherH
-		// db select
 		
-		// redirect => 날씨 목록
-		return "redirect:/weather-history/weather-list-view";
-	}
-}
+		// db insert
+				weatherHistoryBO.addWeatherHistory(date, weather, microDust, temperatures, precipitation, windSpeed);
+
+				// redirect => 날씨 목록
+				return "redirect:/weather-history/weather-list-view";
+			}
+		}
