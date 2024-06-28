@@ -60,4 +60,41 @@ public class Lesson06Controller {
 		
 		return "lesson06/bookmarkList";
 	}
+	
+	// AJAX 요청 - url 중복확인
+	@ResponseBody
+	@PostMapping("/is-duplication-url")
+	public Map<String, Object> isDuplicationUrl(
+			@RequestParam("url") String url) {
+		
+		// db select
+		boolean isDuplication = bookmarkBO.isDuplicationUrl(url);
+		
+		// 응답 json
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplication", true);
+		return result;
+	}
+	
+	// http://localhost:8080/lesson06/delete-bookmark?id=3
+	// AJAX 요청 - id로 삭제
+	@ResponseBody
+	@GetMapping("/delete-bookmark")
+	public Map<String, Object> deleteBookmark(
+			@RequestParam("id") int id) {
+		
+		// db delete
+		int rowCount = bookmarkBO.deleteBookmarkById(id);
+		// 응답값 json
+		Map<String, Object> result = new HashMap<>();
+		if(rowCount > 0) {
+			result.put("code", 200);
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500);
+			result.put("error_message", "삭제할 항목이 존재하지 않습니다.");
+		}
+		return result;
+	}
 }
