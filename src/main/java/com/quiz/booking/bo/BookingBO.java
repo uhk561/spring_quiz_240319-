@@ -35,4 +35,11 @@ public class BookingBO {
 	public void getCheckBooking(String name, String phoneNumber) {
 		bookingMapper.selectCheckBooking(name, phoneNumber);
 	}
+	
+	 // input: name,phoneNumber
+	// output: Booking(최신)
+	public Booking getLatestBookingByNamePhoneNumber(String name, String phoneNumber) {
+		// 없을 때: []    있을 때: [booking1, booking2 ....]
+  		List<Booking> bookingList = bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
+	}
 }

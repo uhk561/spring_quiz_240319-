@@ -96,9 +96,12 @@ public class BookingController {
 				@RequestParam("phoneNumber") String phoneNumber) {
 			
 			// db select
+			bookingBO.getLatestBookingByNamePhoneNumber(name, phoneNumber);
 			
 			// 응답값 => JSON
 			Map<String, Object> result = new HashMap<>();
+			
+			return result;
 		}
 	}
 }
