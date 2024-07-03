@@ -13,7 +13,7 @@ import com.quiz.lesson07.entity.CompanyEntity;
 public class Lesson07Quiz01RestController {
 	
 	@Autowired
-	private CompanyBO companyBo;
+	private CompanyBO companyBO;
 	
 	@GetMapping("/save1")
 	public CompanyEntity save1() {
@@ -23,6 +23,27 @@ public class Lesson07Quiz01RestController {
 		String scale = "대기업";
 		int headcount = 3585;
 		
-	return companyBo.addCompany(name, business, scale, headcount);
+	return companyBO.addCompany(name, business, scale, headcount);
+	}
+	
+	@GetMapping("/save2")
+	public CompanyEntity save2() {
+		
+		
+	return companyBO.addCompany("버블팡", "여신 금융업", "대기업", 6834);
+	}
+	
+	@GetMapping("/update")
+	public CompanyEntity update() {
+		
+		return companyBO.updateCompanyById(8, "중소기업", 34);
+		
+	}
+	
+	@GetMapping("/delete")
+	public String delete() {
+		companyBO.deleteCompanyById(8);
+		
+		return "수행 완료";
 	}
 }
